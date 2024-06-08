@@ -5,10 +5,10 @@ const cartSchema = require("../models/cartSchema");
 const create = (req, res) => {
 
     const userId = req.token.userId;
-    const bookId = req.params.id;
+    const carts = req.params.id;
 
 
-    bookSchema.find({ _id: bookId }).then((result) => {
+    bookSchema.find({ _id: carts }).then((result) => {
         if (result.length === 0)
             return res.status(404).json({
                 success: false,
@@ -18,7 +18,7 @@ const create = (req, res) => {
         cartSchema.findOne({ userId })
             .then((result) => {
                 if (result.length === 0) {
-                    const dbCart = new cartSchema({ userId, carts: bookId })
+                    const dbCart = new cartSchema({ userId, carts })
                     dbCart.save().then((result) => {
                         res.status(201).json({
                             success: true,
@@ -32,7 +32,7 @@ const create = (req, res) => {
                         });
                     });
                 } else {
-                    cartSchema.findOneAndUpdate({ userId: userId }, { $push: { carts: bookId } }).then((result) => {
+                    cartSchema.findOneAndUpdate({ userId: userId }, { $push: { carts: carts } }).then((result) => {
                         res.status(200).json({
                             success: true,
                             message: "Books added to existing cart",
@@ -128,7 +128,6 @@ const _id = req.token.userId
 console.log(_id)  ;
 cartSchema.findOne({userId:_id}).populate("carts")
 .then((result)=>{
-
 res.status(200).json({
 success : true ,
 message : result 
