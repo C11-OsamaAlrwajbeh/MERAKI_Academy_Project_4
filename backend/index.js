@@ -8,6 +8,7 @@ const bookRouter = require("./routes/bookRouter");
 const commentRouter = require('./routes/commentRouter');
 const cartRouter = require('./routes/cartRouter');
 const categoryRouter = require("./routes/categoryRouter") ; 
+const favoriteRouter = require("./routes/favoriteRouter") ; 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Handles any other endpoints [unassigned - endpoints]
-
+app.use("/favorite" , favoriteRouter)
 app.use("/category" , categoryRouter) ; 
 app.use("/cart" , cartRouter) ; 
 app.use("/user" , userRouter) ; 
