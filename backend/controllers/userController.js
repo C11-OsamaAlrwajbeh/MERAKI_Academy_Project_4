@@ -20,6 +20,7 @@ dbUser.save()
         message:" create success "  
     })
     }).catch((err)=>{
+      console.log(err.keyPattern)
      if (err.keyPattern) {
         return res.status(409).json({
               success: false,

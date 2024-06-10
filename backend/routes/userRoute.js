@@ -4,7 +4,7 @@ const {register , login , findAll , deleted , update} = require("../controllers/
 const authentication = require("../middleware/authentication");
 const bcrypte = require("../middleware/bcrypt")
 
-userRouter.post("/create" , register ) ; 
+userRouter.post("/register" , register ) ; 
 userRouter.post("/login"  , login  )
 userRouter.put("/update/:id" , bcrypte ,  update )
 userRouter.get("/find" , authentication , findAll )

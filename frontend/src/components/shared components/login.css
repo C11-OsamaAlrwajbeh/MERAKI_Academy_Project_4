@@ -1,0 +1,41 @@
+.login{
+    display: flex ;
+    flex-direction: column ;
+    border: none;
+    width: 500px;
+    justify-content: center;
+    margin: auto;
+    margin-top: 100px ; 
+    height: 400px;
+    gap: 10px;
+    color: white;
+    backdrop-filter:brightness(70%);
+}
+
+
+.login input {
+width: 250px ;
+margin-left:  auto ;
+margin-right: auto;
+padding: 5px;
+border-radius: 5px ;
+font-size: 15px;
+}
+
+.login label {
+    font-size: 20px ;
+    font-weight: bold;
+}
+
+.login button{
+    width: 200px;
+    padding: 5px;
+    margin: auto;
+    font-size: 15px;
+   
+
+}
+
+.login button:hover{
+    background-color: aliceblue;
+}

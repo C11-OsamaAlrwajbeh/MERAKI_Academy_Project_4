@@ -31,13 +31,73 @@ const create = ( req , res )=>{
     res.json(err) ;
  })
 
-
-
-
-
 }
 
 
+const update =(req ,res)=>{
+  const {comment} = req.body ; 
+  const _id = req.params.id ; 
+  commentSchem.findOneAndUpdate({_id},{comment}).then((result)=>{
+    res.status(201).json({
+      success: true,
+      message: `Comment update`,
+      comment: result,
+    });
+  })
+  .catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Erorr Update`,
+      err: err.message,
+    });
+  });
+
+}
+const deleted = (req, res) => {
+  const _id = req.params.id;
+
+  commentSchem.deleteOne({ _id })
+    .then((result) => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'Comment not found',
+        });
+      }
+
+        bookSchema.findOneAndUpdate(
+        { comments: _id },
+        { $pull: { comments: _id } },
+        { new: true }
+      );
+    })
+    .then((updatedBook) => {
+      if (!updatedBook) {
+        return res.status(404).json({
+          success: false,
+          message: 'Book not found',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: 'Comment deleted successfully',
+        book: updatedBook,
+      });
+    })
+    .catch((err) => {
+      if (!res.headersSent) {
+        res.status(500).json({
+          success: false,
+          message: 'Error deleting comment',
+          err: err.message,
+        });
+      }
+    });
+}
+
 module.exports = {
-    create
+    create , 
+    update , 
+    deleted , 
 }

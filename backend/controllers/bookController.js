@@ -23,7 +23,7 @@ dbBook.save()
 
 
 const findAll = (req , res)=>{
-    bookSchema.find({})
+    bookSchema.find({}).populate("comments")
     .then((result)=>{
        return res.status(200).json({
         success:true , 

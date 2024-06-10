@@ -1,0 +1,55 @@
+.Navbar{
+display: flex;
+border: 2px red solid ; 
+height: 40px ; 
+gap: 20px ;
+align-items: center ;
+justify-content: space-between;
+padding-right: 20px ;
+font-size: 18px;
+color: white;
+
+}
+
+h1{
+  margin-left: 10px;  
+}
+
+
+.option{
+ display: flex ;
+ gap: 50px;
+ font-size: larger;
+}
+
+.link{
+ text-decoration: none ; 
+ color: white;
+}
+
+.link:hover {
+
+color:black ;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
