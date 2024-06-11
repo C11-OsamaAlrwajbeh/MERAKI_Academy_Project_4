@@ -15,11 +15,9 @@ const information = { name , lastName , age, email , password} ;
 const send = () =>{    
 axios.post("http://localhost:5000/user/register" , information )
 .then((result)=>{  
-
    setCreated(result.data.message) 
 }).catch((err)=>{
-    console.log(err)
-    setCreated(err.response.data.message)
+   setCreated(err.response.data.message)
 })
 }
 

@@ -6,11 +6,12 @@ width: 550px;
 justify-content: center;
 margin: auto;
 margin-top: 100px ; 
-height: 700px;
+height: 750px;
 gap: 10px;
 color: white;
 backdrop-filter:brightness(70%);
 overflow: auto;
+text-align: center;
 }
 
 .register input {
@@ -38,4 +39,10 @@ overflow: auto;
     
     .register button:hover{
         background-color: aliceblue;
+    }
+
+    .message{
+        font-size: 20px;
+
+
     }
