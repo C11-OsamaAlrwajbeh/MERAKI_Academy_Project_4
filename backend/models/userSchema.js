@@ -1,9 +1,9 @@
 const mongoose = require("mongoose") ; 
 const bcrypt = require("bcrypt") ; 
 const user = mongoose.Schema({
-name:{type:String  , requierd:true} , 
-lastName:{type:String} , 
-age:{type:Number} , 
+name:{type:String  , required:true} , 
+lastName:{type:String , required:true} , 
+age:{type:Number , required:true} , 
 role : { type:mongoose.Schema.Types.ObjectId , ref:"Role"} , 
 email : {type:String , unique:true},
 password:{type:String} 

@@ -24,17 +24,22 @@ font-size: 15px;
 }
 
 .login label {
-    font-size: 20px ;
+    font-size: 25px ;
     font-weight: bold;
 }
 
 .login button{
     width: 200px;
     padding: 5px;
-    margin: auto;
+    margin-top: 14px;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 15px;
    
 
+}
+.login h1 {
+    font-size: 45px;
 }
 
 .login button:hover{

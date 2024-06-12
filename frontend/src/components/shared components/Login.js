@@ -1,13 +1,19 @@
 import axios from "axios" ; 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./login.css"
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../App";
 const Login =()=>{
-
+    const { setToken , setEnter} = useContext(Context) ; 
+    const navigate = useNavigate() ; 
     const [email ,setEmail] = useState(null) ; 
     const [password , setPassword] = useState(null) ; 
-    const [token , setToken] = useState(null) ; 
     const [created , setCreated] = useState(false)
     const [message , setMessage]=useState(null)
+
+
+ 
+
 
     const verify ={email , password} ; 
 
@@ -22,13 +28,17 @@ const Login =()=>{
  const valied = ()=>{
     axios.post("http://localhost:5000/user/login" , verify )
     .then((result)=>{
-        setToken(result.data.token) ; 
+        setToken(result.data.token) 
+        setEnter(true) ; 
+        localStorage.setItem("token",result.data.token)
         setCreated(true) ; 
     }).catch((err)=>{
         setMessage(err.response.data.message)
         setCreated(false)
     })
- }
+}
+
+
 
    
 
@@ -46,6 +56,9 @@ return(
 <input onChange={changePassword} placeholder="password"/>
 
 <button onClick={valied}> Login </button>
+
+{created? navigate("/home"):<div > {message} </div>}
+<br/>
 
 </div>
 

@@ -37,10 +37,18 @@ dbUser.save()
 
 
 const login = (req, res) => {
+
+  if (!req.body.password || !req.body.email){
+    return res.status(403).json({
+      success: false,
+      message: `Must Be Enter Password and Email `,
+    })
+    }
     const password = req.body.password;
-    const email = req.body.email.toLowerCase();
+    const email = req.body.email.toLowerCase() ; 
+  
     userSchema
-      .findOne({ email })
+      .findOne({ email})
       .populate("role", "-_id -__v")
       .then(async (result) => {
         if (!result) {
