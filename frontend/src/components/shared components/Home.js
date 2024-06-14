@@ -27,7 +27,6 @@ const Home = () => {
    }
 
    useEffect(() => {
-      ;
       axios.post("http://localhost:5000/favorite/create", "", { headers })
          .then((res) => {
             console.log(res);
@@ -37,6 +36,15 @@ const Home = () => {
 
    }, [])
 
+   useEffect(()=>{
+      axios.post("http://localhost:5000/cart/create","",{headers} )
+      .then((res) => {
+         console.log(res);
+      }).catch((err) => {
+         console.log(err)
+      })
+   
+   }, [])
    if (book) {
       return <Details data={book} />
    }

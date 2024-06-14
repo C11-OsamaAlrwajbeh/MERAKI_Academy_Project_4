@@ -15,7 +15,7 @@ return(
 <div className="option">
 <Link className="link" to={"/home"}> Home </Link>
 <Link className="link" to={"/favierot"}> favierot</Link>
-<Link className="link" to={"/register"}> Cart </Link>
+<Link className="link" to={"/cart"}> Cart </Link>
 <Link className="link" to={"/login"}> logout </Link>
 <Link className="link" to={"/register"}> About Us</Link>
 </div>
