@@ -3,8 +3,6 @@ const favortieSchema = require("../models/favoriteSchema");
 const create = async (req, res) => {
 
     const userId = req.token.userId;
-    console.log(userId)
-
     await favortieSchema.findOne({ userId }).then((result) => {
         if (!result) {
             const dbFavortie = new favortieSchema({ userId })

@@ -6,7 +6,7 @@ const categoryRouter = express.Router() ;
 
 categoryRouter.post("/create" , create) ;
 categoryRouter.post("/add/:id/:name" , add) 
-categoryRouter.delete("/delete/:id/:name" ,deleted ) 
+categoryRouter.delete("/delete/:id/:name" , deleted ) 
 categoryRouter.get("/find" , find ) 
 
 

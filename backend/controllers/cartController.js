@@ -4,58 +4,66 @@ const cartSchema = require("../models/cartSchema");
 
 const create = (req, res) => {
     const userId = req.token.userId;
-    cartSchema.find({ userId })
-        .then((result) => {
-            if (result.length === 0) {
-                const dbCart = new cartSchema({ userId });
-                dbCart.save()
-                    .then((result) => {
-                        res.status(201).json({
-                            success: true,
-                            message: "New cart created ",
-                        });
-                    })
-                    .catch((err) => {
-                        res.status(500).json({
-                            success: false,
-                            message: "Error saving new cart",
-                            error: err.message,
-                        });
-                    });
-            } else {
-                res.status(200).json({
-                    success: false,
-                    message: "The cart already exists",
-                });
-            }
-        })
-        .catch((err) => {
-            res.status(500).json({
-                success: false,
-                message: "Error finding cart",
-                error: err.message,
-            });
-        });
-};
 
-const add =(req , res)=>{
+                cartSchema.find({userId}).then((result)=>{
+                    if(result.length=== 0 ){
+                           const dbCart = new cartSchema({userId:userId})  ;
+                           dbCart.save()
+                            .then((result) => {
+                                res.status(201).json({
+                                    success: true,
+                                    message: "New cart created ",
+                                });
+                            })
+                            .catch((err) => {
+                                res.status(500).json({
+                                    success: false,
+                                    message: "Error saving new cart",
+                                    error: err.message,
+                                });
+                            });
+                    }else{
+
+                        res.status(200).json({
+                            success: true,
+                            message: "alredy exist cart",
+                                    });
+                                }
+                }).catch((err)=>{
+                    res.status(500).json({
+                        success: false,
+                        message: "Error saving new cart",
+                        error: err.message,
+                })
+            })
+               
+           
+}
+
+const add = (req, res) => {
     const userId = req.token.userId;
-    const book = req.params.id ; 
-    cartSchema.findOneAndUpdate({userId},{ $push:{ carts: book } })
+    const _id = req.params.id;
+
+    console.log(`userId:${userId} + book:${_id}`)
+
+    cartSchema.findOneAndUpdate(
+        { userId },
+        { $push: { carts: _id }}
+    )
     .then((result) => {
         res.status(200).json({
             success: true,
-            message: "Books added to existing cart",
+            message: "Book added to existing cart",
         });
-    }).catch((err) => {
+    })
+    .catch((err) => {
         res.status(500).json({
             success: false,
             message: "Error updating cart",
-            error: err.message
+            error: err.message,
         });
-    })
-
-}
+    });
+};
 
 
 
@@ -108,7 +116,6 @@ const deleted = (req, res) => {
 
 const find = (req, res) => {
     const _id = req.token.userId
-    console.log(_id);
     cartSchema.findOne({ userId: _id }).populate("carts")
         .then((result) => {
             res.status(200).json({
