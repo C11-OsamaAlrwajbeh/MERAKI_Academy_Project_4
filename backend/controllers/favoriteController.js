@@ -67,7 +67,7 @@ const deleted = (req, res) => {
                     message: "Can Not Delete Book"
                 })
 
-            res.status(201).json({
+            res.status(202).json({
                 success: true,
                 message: "Delete Successfully"
             })

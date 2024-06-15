@@ -47,12 +47,9 @@
   padding: 10px;
  }
 
- .heart:hover{
+ .trash:hover{
   color: red;
  }
- .cart:hover{
-  color: red;
-}
   
   @media (max-width: 600px) {
     .data h1 {

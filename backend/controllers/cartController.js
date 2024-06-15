@@ -44,8 +44,6 @@ const add = (req, res) => {
     const userId = req.token.userId;
     const _id = req.params.id;
 
-    console.log(`userId:${userId} + book:${_id}`)
-
     cartSchema.findOneAndUpdate(
         { userId },
         { $push: { carts: _id }}
@@ -90,7 +88,7 @@ const deleted = (req, res) => {
                                 success: false,
                                 message: "The book was not found in the cart"
                             });
-                        res.status(200).json({
+                        res.status(202).json({
                             success: true,
                             message: "book delete from cart ",
                         });
