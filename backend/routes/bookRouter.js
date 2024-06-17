@@ -1,12 +1,13 @@
 const express = require("express") ; 
 const bookRouter = express.Router() ; 
-const {create , findAll , update , deleted} = require("../controllers/bookController");
+const {create , findAll , update , deleted, findById} = require("../controllers/bookController");
 
 
 bookRouter.post("/create" , create ) ; 
 bookRouter.get("/find" , findAll) ; 
 bookRouter.put("/update/:id" , update) , 
 bookRouter.delete("/delete/:id" , deleted)
+bookRouter.get("/findById/:id" , findById)
 
 
 

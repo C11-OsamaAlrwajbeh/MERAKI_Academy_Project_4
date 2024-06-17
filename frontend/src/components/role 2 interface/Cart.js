@@ -20,8 +20,7 @@ const Cart = ()=>{
 
      const deleted = (ele)=>{
       axios.delete(`http://localhost:5000/cart/delete/${ele._id}` ,{headers})
-      .then((result)=>
-      {console.log(result)
+      .then((result)=>{
          setCart(prevCart => prevCart.filter(item => item._id !== ele._id))
    }).catch((err)=>{
      console.log(err)
@@ -33,7 +32,7 @@ const Cart = ()=>{
     return(
     <div className="cart">
    {cart.map((ele , i )=>{
-    return <div className="data">
+    return <div key={i} className="data">
     <img src={ele.imge}/>
     <h1>{ele.title}</h1>
     

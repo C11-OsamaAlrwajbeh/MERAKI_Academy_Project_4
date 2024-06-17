@@ -1,13 +1,22 @@
+.page{
+  display: flex ;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #fdfcfb , #e2d1c3);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 .details {
     display: grid;
-    width: 70%;
     grid-template-columns:repeat(2,1fr);
     margin: 20px auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #fdfcfb , #e2d1c3);
-  }
+}
   span{
     font-size: 30px;
     font-weight: bold;
@@ -18,17 +27,17 @@
     display: flex ;
     flex-direction: column;
     align-items: start;
-
+    overflow-y: hidden;
   }
   
   .details img {
-    width:100%;
+    width:80%;
     height: auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
   }
-  
+
   .details h3 {
 
     font-size: 25px;
@@ -39,14 +48,78 @@
     font-size: 24px;
 
   }
+  .nameCommenter{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 25px;
+  }
 
+
+  .comments{
+    border: #e2d1c3 solid 1px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .iconsAndName{
+    display: flex ; 
+    align-items: center ;
+    gap: 3px;
+    padding:5px;
+    }
+  
+  .iconsAndName span {
+      font-size: 20px;
+    }
+  
+  .comments p {
+    margin-left: 6px;
+    font-size: 20px;
+  }  
+  .icons{
+    display: flex ;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+    padding: 10px;
+   }
+
+   .box_comments{
+    display: flex; 
+    flex-direction: column ;
+    gap: 10px;
+    width: 80%;
+    padding: 10px;
+   }
+
+   .box_comments input{
+    width:40%;
+    padding: 10px;
+    border-radius: 5px ;
+    border: none ;
+   }
+
+   .box_comments button{
+    padding: 9px;
+    width: 20%;
+   }
+
+   .box_comments button:hover{
+    background-color: aliceblue;
+}
   @media (max-width: 600px) {
 .details{
-    width: 80%;
+    width:90%;
     font-size: 1em; 
     grid-template-columns:repeat(1,1fr);
 
     }
+
+  .page{
+    width: 80%;
+  }  
 }
 
   

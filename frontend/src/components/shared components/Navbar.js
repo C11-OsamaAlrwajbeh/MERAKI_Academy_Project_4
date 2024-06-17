@@ -9,7 +9,7 @@ return(
 
 
 <div className="Navbar">
-<h1> Store Book </h1>
+<h1> Book Store </h1>
 
 {enter?
 <div className="option">

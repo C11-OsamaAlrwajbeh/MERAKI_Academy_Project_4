@@ -38,8 +38,8 @@ const create = async (req, res) => {
 const add = (req, res) => {
     const _id = req.params.id;
     const userId = req.token.userId;
-    favortieSchema.findOneAndUpdate({ userId }, { $push: { favortie: _id } })
-        .then((result) => {
+    favortieSchema.findOneAndUpdate({ userId }, { $push: { favortie: _id } })    
+    .then((result) => {
             res.status(201).json({
                 success: true,
                 message: result

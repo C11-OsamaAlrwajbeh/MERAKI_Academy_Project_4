@@ -23,7 +23,10 @@ dbBook.save()
 
 
 const findAll = (req , res)=>{
-    bookSchema.find({}).populate("comments")
+    bookSchema.find({}).populate({
+      path: 'comments',
+      populate: { path: 'commenter' }
+})
     .then((result)=>{
        return res.status(200).json({
         success:true , 
@@ -38,6 +41,32 @@ const findAll = (req , res)=>{
    })
 
 }
+
+
+const findById = (req , res)=>{
+  const _id =req.params.id ; 
+  bookSchema.findOne({_id}).populate({
+    path: 'comments',
+    populate: { path: 'commenter' }
+})
+  .then((result)=>{
+     return res.status(200).json({
+      success:true , 
+      message:result
+     })     
+  }).catch((err)=>{
+      return res.status(500).json({
+          success: false , 
+          message: "Error Serves"
+
+  })
+ })
+
+}
+
+
+
+  
  const deleted = (req , res)=>{
     const {id} = req.params ; 
    bookSchema.deleteOne({_id:id}).then((result)=>{
@@ -90,6 +119,7 @@ const findAll = (req , res)=>{
 module.exports = {
 create ,
 findAll , 
+findById , 
 deleted , 
 update , 
 

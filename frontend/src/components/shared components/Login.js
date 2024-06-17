@@ -4,7 +4,7 @@ import "./login.css"
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 const Login =()=>{
-    const { setToken , setEnter} = useContext(Context) ; 
+    const { setToken , setEnter ,  setName} = useContext(Context) ; 
     const navigate = useNavigate() ; 
     const [email ,setEmail] = useState(null) ; 
     const [password , setPassword] = useState(null) ; 
@@ -28,6 +28,7 @@ const Login =()=>{
  const valied = ()=>{
     axios.post("http://localhost:5000/user/login" , verify )
     .then((result)=>{
+        setName(result.data.name); 
         setToken(result.data.token) 
         setEnter(true) ; 
         localStorage.setItem("token",result.data.token)

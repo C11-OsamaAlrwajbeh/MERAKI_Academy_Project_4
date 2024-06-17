@@ -46,7 +46,7 @@ const Home = () => {
    
    }, [])
    if (book) {
-      return <Details data={book} />
+      return <Details data={book._id} />
    }
 
 

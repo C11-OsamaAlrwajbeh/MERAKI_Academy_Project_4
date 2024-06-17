@@ -14,9 +14,10 @@ export const Context = createContext();
 const App = () => {
   const [enter , setEnter]=useState(false) ; 
   const [token , setToken] = useState(" "|| localStorage.getItem("token")) ; 
+  const[name , setName] = useState("") ; 
   return (
    <div className="App">
-    <Context.Provider value={{token , setToken , enter , setEnter}}>
+    <Context.Provider value={{token , setToken , enter , setEnter , name , setName}}>
       <Navbar/>
       <Routes>
       <Route path='/login' element={<Login/>}/>

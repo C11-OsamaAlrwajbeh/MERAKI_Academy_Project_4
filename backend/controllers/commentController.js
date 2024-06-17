@@ -8,16 +8,15 @@ const create = ( req , res )=>{
  const id = req.params.id  ; 
  const comment = req.body.comment ; 
  const commenter = req.token.userId ; 
-
- 
  const dbComment = new commentSchem({comment , commenter})
  dbComment.save()
  .then((result)=>{
-    bookSchema.findOneAndUpdate({_id :id} ,{ $push: { comments: result._id }}).then((result) =>{
+    bookSchema.findOneAndUpdate({_id :id} ,{ $push: { comments: result._id }})
+    .then((result) =>{
         res.status(201).json({
           success: true,
           message: `Comment added`,
-          comment: result,
+          comment: result 
         });
       })
       .catch((err) => {
@@ -55,22 +54,11 @@ const update =(req ,res)=>{
 }
 const deleted = (req, res) => {
   const _id = req.params.id;
-
-  commentSchem.deleteOne({ _id })
-    .then((result) => {
-      if (result.deletedCount === 0) {
-        return res.status(404).json({
-          success: false,
-          message: 'Comment not found',
-        });
-      }
-
-        bookSchema.findOneAndUpdate(
-        { comments: _id },
+  const idBook = req.params.idBook ; 
+      bookSchema.findOneAndUpdate(
+        { _id: idBook },
         { $pull: { comments: _id } },
-        { new: true }
-      );
-    })
+      )
     .then((updatedBook) => {
       if (!updatedBook) {
         return res.status(404).json({
@@ -78,13 +66,21 @@ const deleted = (req, res) => {
           message: 'Book not found',
         });
       }
-
+      commentSchem.deleteOne({ _id })
+    .then((result) => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'Comment not found',
+        });
+      }
       res.status(200).json({
         success: true,
         message: 'Comment deleted successfully',
         book: updatedBook,
       });
     })
+  })
     .catch((err) => {
       if (!res.headersSent) {
         res.status(500).json({
