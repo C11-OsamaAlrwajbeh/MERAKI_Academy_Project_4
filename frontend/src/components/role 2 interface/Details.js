@@ -31,35 +31,35 @@ const Details = ({ data }) => {
 
     const handelClickedAddComment = () => {
         axios.post(`http://localhost:5000/comment/create/${data}`, { comment }, { headers })
-        .then((result) => {
-            axios.get(`http://localhost:5000/book/findById/${data}`)
-                .then((result) => {
-                    setBook(result.data.message);
-                    setComments(result.data.message.comments);
-                    setComment("");
-                }).catch((err) => {
-                    console.log(err);
-                });
-        }).catch((err) => {
-            console.log(err);
-        });
+            .then((result) => {
+                axios.get(`http://localhost:5000/book/findById/${data}`)
+                    .then((result) => {
+                        setBook(result.data.message);
+                        setComments(result.data.message.comments);
+                        setComment("");
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+            }).catch((err) => {
+                console.log(err);
+            });
     }
 
     const deleted = (ele) => {
         console.log(ele._id)
         axios.delete(`http://localhost:5000/comment/delete/${data}/${ele._id}`, { headers })
-                    .then((result) => {
-                        setComments(comments.filter(comment => comment._id !== ele._id))
-                    }).catch((err) => {
-                        console.log(err);
-                    });
-         
+            .then((result) => {
+                setComments(comments.filter(comment => comment._id !== ele._id))
+            }).catch((err) => {
+                console.log(err);
+            });
+
     }
 
     return (
         <div className="page">
-            <div className="details">   
-                <img src={book.imge} alt="Book cover"/>
+            <div className="details">
+                <img src={book.imge} alt="Book cover" />
                 <div className="bookInformation">
                     <h2> <span> Title: </span> {book.title}</h2>
                     <h2> <span> Author: </span>{book.author}</h2>
@@ -84,11 +84,13 @@ const Details = ({ data }) => {
                             <span>{ele.commenter.name}</span>
                         </div>
                         <p>{ele.comment}</p>
-                        <div className="icons">
-                            <svg onClick={() => { deleted(ele) }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="trash" viewBox="0 0 16 16">
-                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                            </svg>
-                        </div>
+                        {enter ?
+                            <div className="icons">
+                                <svg onClick={() => { deleted(ele) }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="trash" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                                </svg>
+                            </div>
+                            : ""}
                     </div>
                 })}
             </div>

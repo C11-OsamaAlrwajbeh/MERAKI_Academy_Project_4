@@ -8,7 +8,8 @@ const dbUser = new userSchema({
      name ,
      lastName ,
      age  ,
-     email ,  
+     email , 
+     role : "66715df9bd315669c0e1a211" , 
      password 
 })    
 

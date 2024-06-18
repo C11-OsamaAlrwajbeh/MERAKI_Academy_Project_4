@@ -7,7 +7,7 @@ const bcrypte = require("../middleware/bcrypt")
 userRouter.post("/register" , register ) ; 
 userRouter.post("/login"  , login  )
 userRouter.put("/update/:id" , bcrypte ,  update )
-userRouter.get("/find" , authentication , findAll )
+userRouter.get("/find"  , findAll )
 userRouter.delete("/delete/:id" , deleted)
 
 

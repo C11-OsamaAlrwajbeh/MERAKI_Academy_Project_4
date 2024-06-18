@@ -1,6 +1,7 @@
+const roleSchema = require("../models/roleSchema")
 const create = (req, res) => {
     const { role, permissions } = req.body;
-    const newRole = new RoleModel({ role, permissions });
+    const newRole = new roleSchema({ role, permissions });
     newRole
       .save()
       .then((result) => {

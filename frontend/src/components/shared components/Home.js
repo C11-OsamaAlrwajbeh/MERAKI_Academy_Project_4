@@ -6,12 +6,12 @@ import Details from "../role 2 interface/Details";
 import { Context } from "../../App";
 
 const Home = () => {
-   const navigate = useNavigate();
    const { enter, token } = useContext(Context);
    const [data, setData] = useState([]);
    const [book, setBook] = useState(null);
 
    useEffect(() => {
+      console.log("from useEffect home")
       axios.get("http://localhost:5000/book/find")
       .then((result) => {
        setData(result.data.message);
@@ -48,6 +48,9 @@ const Home = () => {
    if (book) {
       return <Details data={book._id} />
    }
+
+
+   
 
 
    return (

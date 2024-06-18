@@ -9,17 +9,22 @@ import Home from './components/shared components/Home' ;
 import Details from './components/role 2 interface/Details';
 import Favierot from './components/role 2 interface/Favierot';
 import Cart from './components/role 2 interface/Cart';
+import Add from './components/role 1 interface/AddBooks' ; 
+import User from './components/role 1 interface/Users';
 
 export const Context = createContext();
 const App = () => {
   const [enter , setEnter]=useState(false) ; 
   const [token , setToken] = useState(" "|| localStorage.getItem("token")) ; 
   const[name , setName] = useState("") ; 
+  const [role , setRole] = useState("") ; 
   return (
    <div className="App">
-    <Context.Provider value={{token , setToken , enter , setEnter , name , setName}}>
+    <Context.Provider value={{token , setToken , enter , setEnter , name , setName , role , setRole}}>
       <Navbar/>
       <Routes>
+      <Route path='/user' element={<User/>}/>
+      <Route path='/add' element={<Add/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>

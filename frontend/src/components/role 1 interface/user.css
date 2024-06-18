@@ -1,0 +1,35 @@
+.user {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.name_user{
+    display: grid ;
+    grid-template-columns:repeat(3,1fr) ;
+    padding: 10px ; 
+    justify-content: space-around ;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.data_user {
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.data_user p {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    font-size: 20px;
+}
+

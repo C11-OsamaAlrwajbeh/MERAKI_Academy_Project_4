@@ -4,18 +4,19 @@ import "./login.css"
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 const Login =()=>{
-    const { setToken , setEnter ,  setName} = useContext(Context) ; 
+    const { setToken , setEnter ,  setName , setRole} = useContext(Context) ; 
     const navigate = useNavigate() ; 
     const [email ,setEmail] = useState(null) ; 
     const [password , setPassword] = useState(null) ; 
     const [created , setCreated] = useState(false)
     const [message , setMessage]=useState(null)
+   
 
 
  
 
 
-    const verify ={email , password} ; 
+const verify ={email , password} ; 
 
  const changeEmail =(e)=>{
         setEmail(e.target.value)  
@@ -28,6 +29,7 @@ const Login =()=>{
  const valied = ()=>{
     axios.post("http://localhost:5000/user/login" , verify )
     .then((result)=>{
+       // setRole(result.data.role.role)
         setName(result.data.name); 
         setToken(result.data.token) 
         setEnter(true) ; 
