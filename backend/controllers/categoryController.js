@@ -7,12 +7,13 @@ const name = req.body.name ;
 
 const dbCategory = new categoriesSchema({name}) 
 
-dbCategory.save().then((result)=>{
+dbCategory.save()
+.then((result)=>{
 res.status(201).json({
 success:true  , 
 message : "Create Success"
 })}).catch((err)=>{
-res.status(201).json({
+res.status(500).json({
 success:false , 
 message :"Error Create Category "
 })
@@ -20,9 +21,9 @@ message :"Error Create Category "
 
 }
 
-
 const add = (req , res)=>{
 const {id , name} = req.params; 
+console.log(name , id) ; 
 categoriesSchema.findOneAndUpdate({name} , {$push:{books:id}})
 .then((result)=>{
     if(!result)
@@ -34,9 +35,10 @@ categoriesSchema.findOneAndUpdate({name} , {$push:{books:id}})
     success:true  , 
     message : "Create add"
     })}).catch((err)=>{
-    res.status(201).json({
+    res.status(500).json({
     success:false , 
-    message :"Error add"
+    message :"Error add" , 
+    error:err
     })
 
     })
@@ -67,15 +69,24 @@ const deleted = (req , res)=>{
 }
 
 
-const find =(req , res)=>{
-
-categoriesSchema.find({}).populate("books")
+const findByName =(req , res)=>{  
+const {name} = req.params ;   
+categoriesSchema.findOne({name}).populate("books")
 .then((result)=>{
+    if(!result){
+ return res.status(500).json({
+    success:false  , 
+    message : "not result"
+    })
+   }
+    else{
     res.status(201).json({
     success:true  , 
     message : result
-    })}).catch((err)=>{
-    res.status(201).json({
+    })
+}
+    }).catch((err)=>{
+    res.status(500).json({
     success:false , 
     message :"Server Error"
     })
@@ -85,12 +96,38 @@ categoriesSchema.find({}).populate("books")
 
 }
 
-
+const find =(req , res)=>{    
+    categoriesSchema.find({}).populate("books")
+    .then((result)=>{
+        if(!result){
+     return res.status(500).json({
+        success:false  , 
+        message : "not result"
+        })
+       }
+        else{
+        res.status(201).json({
+        success:true  , 
+        message : result
+        })
+    }
+        }).catch((err)=>{
+        res.status(500).json({
+        success:false , 
+        message :"Server Error"
+        })
+    
+        })
+    
+    
+    }
+    
 
 
 module.exports = {
     create ,  
     add ,
     deleted, 
-    find 
+    findByName ,
+    find
 }

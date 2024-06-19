@@ -25,8 +25,8 @@ const User=()=>{
        <h3>Age</h3>
     </div>
      {
-        user.map((ele)=>{
-            return<div className="data_user">
+        user.map((ele , i )=>{
+            return<div key={i} className="data_user">
             <p> {ele.name} </p>
             <p> {ele.lastName} </p>
             <p> {ele.age} </p>

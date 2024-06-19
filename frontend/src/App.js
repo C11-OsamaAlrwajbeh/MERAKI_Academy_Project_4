@@ -11,18 +11,23 @@ import Favierot from './components/role 2 interface/Favierot';
 import Cart from './components/role 2 interface/Cart';
 import Add from './components/role 1 interface/AddBooks' ; 
 import User from './components/role 1 interface/Users';
+import Category from "./components/role 1 interface/Category" ; 
 
 export const Context = createContext();
 const App = () => {
   const [enter , setEnter]=useState(false) ; 
   const [token , setToken] = useState(" "|| localStorage.getItem("token")) ; 
-  const[name , setName] = useState("") ; 
+  const[category , setCategory] = useState([]) ; 
   const [role , setRole] = useState("") ; 
+  const [nameCategory , setNameCategory]=useState("")
+  const [userId , setUserId]=useState(0) ; 
   return (
    <div className="App">
-    <Context.Provider value={{token , setToken , enter , setEnter , name , setName , role , setRole}}>
+    <Context.Provider value={{token , setToken , enter , setEnter ,
+       role , setRole ,  nameCategory , setNameCategory , category , setCategory , userId , setUserId}}>
       <Navbar/>
       <Routes>
+      <Route path='/category' element={<Category/>}/>
       <Route path='/user' element={<User/>}/>
       <Route path='/add' element={<Add/>}/>
       <Route path='/login' element={<Login/>}/>

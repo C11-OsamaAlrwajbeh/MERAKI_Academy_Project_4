@@ -1,15 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css" ; 
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../App";
+import axios from "axios";
 
 const Navbar = ()=>{
-    const{enter , role} =useContext(Context) ;  
-    const[c , setC] = useState("") ;  
-    const s = (e)=>{
-        console.log(e.target.value) ; 
-            
+    const navigate = useNavigate();
+    const{enter , role  , setNameCategory , category , setCategory ,  setToken ,
+        setEnter } =useContext(Context) ;    
+   
+    const handelSelector = (e)=>{
+        setNameCategory(e.target.value) ; 
     }
+
+    useEffect(()=>{ 
+        axios.get("http://localhost:5000/category/find")
+        .then((result)=>{ 
+            setCategory(result.data.message) ; 
+        }).catch((err)=>{
+            console.log(err) ; 
+        })
+    } , [setCategory])
+
+    const logout = () =>{
+        setEnter(false) ; 
+        setToken(null) ; 
+        localStorage.clear() ;
+        navigate("/login")
+    }
+
     return(
 
         
@@ -24,21 +43,22 @@ role ==="admin"?
 <Link className="link" to={"/add"}> Add Book</Link>
 <Link className="link" to={"/user"}> Users</Link>
 <Link className="link" to={"/home"}> Books </Link>
-<Link className="link" to={"/login"}> delete Book </Link>
+<Link className="link" to={"/category"}> Category </Link>
 <Link className="link" to={"/register"}> update </Link>
 </div>
 :
 <div className="option">
-<select onChange={s}>
-    <option value="0">Select car:</option>
-    <option value="Action">Audi</option>
-    <option value="Arbic">BMW</option>
-    <option value="English">Citroen</option>
+<select onChange={handelSelector}>
+    <option value="all">All</option>
+    {
+       category.map((ele , i)=>{
+       return <option key={i} value={ele.name}>{ele.name}</option>}) 
+    }
 </select>
 <Link className="link" to={"/home"}> Home </Link>
 <Link className="link" to={"/favierot"}> favierot</Link>
 <Link className="link" to={"/cart"}> Cart </Link>
-<Link className="link" to={"/login"}> logout </Link>
+<Link className="link" onClick={logout}> logout </Link>
 <Link className="link" to={"/register"}> About Us</Link>
 </div>
 
