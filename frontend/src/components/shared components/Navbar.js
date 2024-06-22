@@ -3,6 +3,7 @@ import "./navbar.css" ;
 import { useContext, useEffect } from "react";
 import { Context } from "../../App";
 import axios from "axios";
+import { googleLogout } from '@react-oauth/google';
 
 const Navbar = ()=>{
     const navigate = useNavigate();
@@ -27,6 +28,8 @@ const Navbar = ()=>{
         setToken(null) ; 
         localStorage.clear() ;
         navigate("/login")
+        googleLogout();
+
     }
 
     return(

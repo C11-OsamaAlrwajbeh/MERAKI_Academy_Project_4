@@ -8,6 +8,7 @@ author: {type: String , required: true },
 pages: { type: Number, required: true },
 language: { type: String, required: true } ,
 genre:{  type: String , required: true} , 
+price:{type:Number , required: true} , 
 comments:[{type:mongoose.Schema.Types.ObjectId, ref:"Comment" }]
 })
 

@@ -4,7 +4,7 @@ import { Context } from "../../App";
 import "./favierot.css"
 const Favierot = () => {
   const [favierots , setFavierots] = useState([]) ; 
-  const { token , enter } = useContext(Context);
+  const { token  } = useContext(Context);
   const headers = {
     Authorization: `Bearer ${token}`};
 const callFavorite= ()=>{
@@ -24,7 +24,6 @@ useEffect(() => {
 const deleted = (ele)=>{
 axios.delete(`http://localhost:5000/favorite/delete/${ele._id}`,{headers})
 .then((result)=>{
-  console.log((o)=>o.filter(item => item._id !== ele._id)) ; 
   setFavierots((o)=>o.filter(item => item._id !== ele._id))
 }).catch((err)=>{
   console.log(err)

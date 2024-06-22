@@ -58,7 +58,7 @@ const deleted = (req, res) => {
 
     const { userId } = req.token;
     const { id } = req.params;
-    console.log(req.token)
+    console.log(id) ; 
     favortieSchema.findOneAndUpdate({ userId }, { $pull: { favortie: id } })
         .then((result) => {
             if (!result)

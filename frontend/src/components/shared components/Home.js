@@ -70,6 +70,7 @@ const Home = () => {
             <div key={i} className="data">
                <img onClick={() => { setBook(ele); }} src={ele.imge} alt={ele.title} />
                <h1>{ele.title}</h1>
+               <p className="price">{ele.price} J.d</p>
 
                {enter ?
                   <div className="icons">

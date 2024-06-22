@@ -5,9 +5,10 @@ const cartSchema = require("../models/cartSchema");
 const create = (req, res) => {
     const userId = req.token.userId;
 
-                cartSchema.find({userId}).then((result)=>{
+                cartSchema.find({userId})
+                .then((result)=>{
                     if(result.length=== 0 ){
-                           const dbCart = new cartSchema({userId:userId})  ;
+                           const dbCart = new cartSchema({userId:userId  , carts:[]})  ;
                            dbCart.save()
                             .then((result) => {
                                 res.status(201).json({
@@ -43,10 +44,11 @@ const create = (req, res) => {
 const add = (req, res) => {
     const userId = req.token.userId;
     const _id = req.params.id;
+    const quantity = 1
 
     cartSchema.findOneAndUpdate(
         { userId },
-        { $push: { carts: _id }}
+        { $push:{ carts: { book:_id , quantity } }}
     )
     .then((result) => {
         res.status(200).json({
@@ -70,7 +72,9 @@ const add = (req, res) => {
 
 const deleted = (req, res) => {
     const userId = req.token.userId;
-    const carts = req.params.id;
+    const book = req.params.id;
+
+   
 
         cartSchema.findOne({ userId })
             .then((result) => {
@@ -81,14 +85,15 @@ const deleted = (req, res) => {
 
                     })
                 } else {
-                    cartSchema.updateOne({ userId: userId }, { $pull: { carts: carts } })
+                    cartSchema.findOneAndUpdate({ userId:userId },{ $pull:{carts:{book:book}}})
                     .then((result) => {
-                        if (result.modifiedCount === 0)
+                        if (!result){
                             return res.status(404).json({
                                 success: false,
                                 message: "The book was not found in the cart"
                             });
-                        res.status(202).json({
+                        }
+                        res.status(200).json({
                             success: true,
                             message: "book delete from cart ",
                         });
@@ -106,6 +111,7 @@ const deleted = (req, res) => {
                 res.status(500).json({
                     success: false,
                     message: "Erorr Server",
+                    error:err.message
                 });
             })
 
@@ -114,7 +120,10 @@ const deleted = (req, res) => {
 
 const find = (req, res) => {
     const _id = req.token.userId
-    cartSchema.findOne({ userId: _id }).populate("carts")
+    cartSchema.findOne({ userId: _id }).populate({
+        path: 'carts',
+        populate: { path: 'book' }
+  })
         .then((result) => {
             res.status(200).json({
                 success: true,
@@ -129,12 +138,45 @@ const find = (req, res) => {
 
 }
 
+const updateQuantity = (req, res) => {
+    const userId = req.token.userId;
+    const bookId = req.params.id;
+    const { quantity } = req.body;
 
+    console.log(quantity, bookId);
+
+    cartSchema.findOneAndUpdate(
+        { userId, "carts.book": bookId },
+        { $set: { "carts.$.quantity": quantity } }, // Use positional operator `$` to update the correct item in the array
+        { new: true } // Return the updated document
+    )
+    .then((result) => {
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Book not found in the cart",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "Cart updated successfully",
+            data: result // Optionally return the updated cart
+        });
+    })
+    .catch((err) => {
+        res.status(500).json({
+            success: false,
+            message: "Error updating cart",
+            error: err.message,
+        });
+    });
+};
 
 
 module.exports = {
     create,
     deleted,
     find,
-    add 
+    add ,
+    updateQuantity
 }
