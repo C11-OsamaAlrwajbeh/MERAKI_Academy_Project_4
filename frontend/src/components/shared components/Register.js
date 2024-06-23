@@ -92,7 +92,7 @@ return(
 
 <button onClick={send}> Login </button>
 
-<GoogleLogin
+<GoogleLogin className="googleLoginButton"
 onSuccess={credentialResponse}
 onError={errorMassege}
           

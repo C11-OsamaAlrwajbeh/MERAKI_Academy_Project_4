@@ -24,7 +24,7 @@ useEffect(() => {
 const deleted = (ele)=>{
 axios.delete(`http://localhost:5000/favorite/delete/${ele._id}`,{headers})
 .then((result)=>{
-  setFavierots((o)=>o.filter(item => item._id !== ele._id))
+  setFavierots(favierots.filter((item) => item._id !== ele._id))
 }).catch((err)=>{
   console.log(err)
 })

@@ -4,10 +4,21 @@ import "./category.css";
 import { Context } from "../../App";
 
 const Category = () => {
-    const {category} = useContext(Context) ; 
     const [dataCategory, setDataCategory] = useState([]); // 
-    const [adminCategory , setAdminCategory ] = useState("") ; // 
     const [id , setId] = useState(0) ; 
+    const [createCategory , setCreateCategory]=useState("") ; 
+    const[category , setCategory] = useState([]) ; 
+    
+
+
+    useEffect(()=>{ 
+        axios.get("http://localhost:5000/category/find")
+        .then((result)=>{ 
+            setCategory(result.data.message) ; 
+        }).catch((err)=>{
+            console.log(err) ; 
+        })
+    } , [createCategory])
     
     useEffect(() => {
         axios.get("http://localhost:5000/book/find")
@@ -27,12 +38,36 @@ const Category = () => {
         .catch((err) => {
             console.log(err);
         });
+    }
 
+    const inputCategory=(e)=>{
+        setCreateCategory(e.target.value) ; 
 
     }
 
+    const handelClikcCreate=()=>{
+        axios.post("http://localhost:5000/category/create",{name:createCategory}) 
+        .then((result) => {
+            setCategory([...category, { name: createCategory }]);
+            setCreateCategory(""); 
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+        console.log(category)
     return (
         <div className="category">
+            <div className="create_class_category">
+             <label>Create New Category</label>
+             <input placeholder="Enter Category" onChange={inputCategory}/> 
+             <button onClick={handelClikcCreate}>Create</button>
+            </div>
+        <div className="category_form">
+          
+
+
             {dataCategory.map((elements, i) => {
                 return (
                     <div className="category-books" key={i}>
@@ -48,6 +83,7 @@ const Category = () => {
                     </div>
                 );
             })}
+        </div>
         </div>
     );
 };

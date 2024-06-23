@@ -1,9 +1,9 @@
 const bookSchema = require("../models/bookSchema") ; 
 
 const create =( req , res )=>{
-const {title , description, imge , author , language , genre , pages , comments } = req.body
+const {title , description, imge , author , language , genre , pages , price , comments } = req.body
 const dbBook = new bookSchema({
-    title , description, imge , author , language , genre , pages
+    title , description, imge , author , language , genre , pages ,price
 })    
 
 dbBook.save()

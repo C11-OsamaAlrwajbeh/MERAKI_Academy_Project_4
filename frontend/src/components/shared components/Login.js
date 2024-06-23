@@ -78,8 +78,9 @@ const Login = () => {
             <input onChange={changePassword} placeholder="password" />
 
             <button onClick={valied}> Login </button>
+            <br/>
 
-            <GoogleLogin
+            <GoogleLogin className="googleLoginButton" 
                 onSuccess={credentialResponse }
                 onError={errorMassege}
              />

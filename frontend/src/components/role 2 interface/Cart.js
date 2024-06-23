@@ -20,6 +20,7 @@ const Cart = () => {
         axios.get("http://localhost:5000/cart/find", { headers })
             .then((result) => {
                 const fetchedCart = result.data.message.carts;
+                console.log(fetchedCart )
                 setCart(fetchedCart);
                 setPrice(calculateTotalPrice(fetchedCart));
             }).catch((err) => {

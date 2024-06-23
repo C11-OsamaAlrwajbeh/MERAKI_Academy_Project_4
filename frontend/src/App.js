@@ -18,14 +18,14 @@ const App = () => {
   
   const [enter , setEnter]=useState(false) ; 
   const [token , setToken] = useState(" "|| localStorage.getItem("token")) ; 
-  const[category , setCategory] = useState([]) ; 
+ 
   const [role , setRole] = useState("") ; 
   const [nameCategory , setNameCategory]=useState("")
   const [userId , setUserId]=useState(0) ; 
   return (
    <div className="App">
     <Context.Provider value={{token , setToken , enter , setEnter ,
-       role , setRole ,  nameCategory , setNameCategory , category , setCategory , userId , setUserId}}>
+       role , setRole ,  nameCategory , setNameCategory  ,userId , setUserId}}>
       <Navbar/>
       <Routes>
       <Route path='/category' element={<Category/>}/>

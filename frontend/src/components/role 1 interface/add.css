@@ -1,48 +1,57 @@
 .add {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
-    margin-top: 40px;
-    border-radius: 10px; 
+    border-radius: 10px;
     background-color: #f9f9f9;
-    max-width: 400px;
-    margin: auto;
-    margin-top: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.add input {
-    width: 90%;
+.addh1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add_form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add_form input,
+.add_form textarea {
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
     font-size: 16px;
 }
 
-.add input::placeholder {
-    color: #888;
-}
-
-.add input:focus {
-    border-color: #007bff;
+.add_form input:focus,
+.add_form textarea:focus {
+    border-color: #007BFF;
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.add button{
-    width: 40%;
-    padding: 5px;
-    margin-top: 14px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 15px;
+.add_form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+.add_form button:hover {
+    background-color: #0056b3;
+}
 
-.add button:hover{
-    background-color: aliceblue;
+.preview-image {
+    max-width: 100%;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

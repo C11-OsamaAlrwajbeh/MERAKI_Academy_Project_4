@@ -3,32 +3,25 @@ import "./navbar.css" ;
 import { useContext, useEffect } from "react";
 import { Context } from "../../App";
 import axios from "axios";
-import { googleLogout } from '@react-oauth/google';
 
 const Navbar = ()=>{
     const navigate = useNavigate();
-    const{enter , role  , setNameCategory , category , setCategory ,  setToken ,
+    const{enter , role  , setNameCategory , category ,   setToken ,
         setEnter } =useContext(Context) ;    
    
     const handelSelector = (e)=>{
         setNameCategory(e.target.value) ; 
     }
 
-    useEffect(()=>{ 
-        axios.get("http://localhost:5000/category/find")
-        .then((result)=>{ 
-            setCategory(result.data.message) ; 
-        }).catch((err)=>{
-            console.log(err) ; 
-        })
-    } , [setCategory])
+
 
     const logout = () =>{
         setEnter(false) ; 
         setToken(null) ; 
         localStorage.clear() ;
-        navigate("/login")
-        googleLogout();
+        if(enter === false)
+        return navigate("/home") 
+     
 
     }
 
@@ -48,6 +41,7 @@ role ==="admin"?
 <Link className="link" to={"/home"}> Books </Link>
 <Link className="link" to={"/category"}> Category </Link>
 <Link className="link" to={"/register"}> update </Link>
+<Link className="link" onClick={logout}> logout </Link>
 </div>
 :
 <div className="option">
@@ -59,7 +53,7 @@ role ==="admin"?
     }
 </select>
 <Link className="link" to={"/home"}> Home </Link>
-<Link className="link" to={"/favierot"}> favierot</Link>
+<Link className="link" to={"/favierot"}> favorite</Link>
 <Link className="link" to={"/cart"}> Cart </Link>
 <Link className="link" onClick={logout}> logout </Link>
 <Link className="link" to={"/register"}> About Us</Link>
@@ -73,6 +67,7 @@ role ==="admin"?
 </div>
 
  }
+ 
 </div>
 
 

@@ -3,9 +3,19 @@ const userSchema = require("../models/userSchema");
 
 
 const create = (req , res)=>{
-const name = req.body.name ; 
+const {name} = req.body ; 
+const category = [] ; 
 
-const dbCategory = new categoriesSchema({name}) 
+if(name === ""){
+ return res.status(500).json({
+   success:false , 
+   message :"Enter type Category"
+        })
+}
+
+console.log(name) ; 
+
+const dbCategory = new categoriesSchema({name , category}) 
 
 dbCategory.save()
 .then((result)=>{
@@ -15,7 +25,8 @@ message : "Create Success"
 })}).catch((err)=>{
 res.status(500).json({
 success:false , 
-message :"Error Create Category "
+message :"Error Create Category " ,
+erorr:err
 })
 })
 
@@ -23,13 +34,13 @@ message :"Error Create Category "
 
 const add = (req , res)=>{
 const {id , name} = req.params; 
-console.log(name , id) ; 
 categoriesSchema.findOneAndUpdate({name} , {$push:{books:id}})
 .then((result)=>{
     if(!result)
     return res.status(500).json({
         success: false  , 
-        message : "can not add book"})
+        message : "can not add book"
+    })
 
     res.status(201).json({
     success:true  , 
