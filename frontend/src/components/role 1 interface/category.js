@@ -48,7 +48,7 @@ const Category = () => {
     const handelClikcCreate=()=>{
         axios.post("http://localhost:5000/category/create",{name:createCategory}) 
         .then((result) => {
-            setCategory([...category, { name: createCategory }]);
+            setCreateCategory([...category, { name: createCategory }]);
             setCreateCategory(""); 
         })
         .catch((err) => {

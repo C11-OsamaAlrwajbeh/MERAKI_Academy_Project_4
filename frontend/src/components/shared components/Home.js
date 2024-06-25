@@ -6,14 +6,14 @@ import Details from "../role 2 interface/Details";
 import { Context } from "../../App";
 
 const Home = () => {
-   const { enter , role, token,  nameCategory } = useContext(Context);
+   const { enter , role, token,  nameCategory , search } = useContext(Context);
    const [data, setData] = useState([]);
    const [book, setBook] = useState(null);
-   console.log(data) ; 
    const headers = {
       Authorization: `Bearer ${token}`
    };
-
+   
+  
    useEffect(() => {
       if (nameCategory ==="" || nameCategory ==="all") {
       axios.get("http://localhost:5000/book/find")
@@ -80,7 +80,8 @@ const Home = () => {
 
    return (
       <div className="home">
-         {data.map((ele, i) => (
+         {data.filter((item)=>search.toLowerCase()=== "" ? item : item.title.toLowerCase().includes(search))
+         .map((ele, i) => (
             <div key={i} className="data">
                <img onClick={() => { setBook(ele); }} src={ele.imge} alt={ele.title} />
                <h1>{ele.title}</h1>
@@ -125,6 +126,9 @@ const Home = () => {
             </div>
          ))}
       </div>
+   
+   
+   
    );
 }
 

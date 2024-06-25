@@ -71,21 +71,20 @@ return(
 <label> Name </label>
 <input onChange={changeName} placeholder="user name"/>
 
-<br/>
+
 
 <label> Last Name </label>
 <input onChange={changeLastName} placeholder="last name"/>
 
-<br/>
+
 <label> Age </label>
 <input onChange={changeAge} placeholder="age"/>
 
-<br/>
+
 
 <label> Email </label>
 <input onChange={changeEmail} placeholder="email"/>
 
-<br/>
 
 <label> Password </label>
 <input onChange={changePassword} placeholder="password"/>
@@ -95,6 +94,10 @@ return(
 <GoogleLogin className="googleLoginButton"
 onSuccess={credentialResponse}
 onError={errorMassege}
+size ="large"
+type="standard"
+width="200px"
+theme="filled_blue"
           
 
 />

@@ -7,12 +7,25 @@
   padding: 20px;
   color: white;
 }
+.searchAndPageTitle{
+  display: flex ; 
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 
+}
+.searchAndPageTitle input{
+  padding: 5px; 
+  margin-left: 50px;
+  border-radius: 4px; 
+  font-size: 18px;
+  
+}
 .Navbar h1 {
   margin: 0;
   padding: 0;
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 3em;
+  font-weight: bold; 
 }
 
 .option {
@@ -34,7 +47,7 @@
   color: #ff6347;
 }
 
-.option select {
+.searchAndPageTitle select {
   margin-right: 10px;
   padding: 5px;
   font-size: 1em;
@@ -45,7 +58,7 @@
   cursor: pointer;
 }
 
-.option select option {
+.searchAndPageTitle select option {
   background-color: white;
   color: black;
 }

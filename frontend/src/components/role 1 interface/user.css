@@ -6,23 +6,24 @@
 
 .name_user{
     display: grid ;
-    grid-template-columns:repeat(3,1fr) ;
+    grid-template-columns:repeat(5,1fr) ;
     padding: 10px ; 
     justify-content: space-around ;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 10px;
+   
     padding: 10px;
+    font-size: 20px;
 }
 
 .data_user {
     display: grid;
-    grid-template-columns:repeat(3,1fr) ;
+    grid-template-columns:repeat(5,1fr) ;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 10px;
+   
     padding: 10px;
-    margin: 10px 0;
+  
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,4 +33,19 @@
     font-weight: bold;
     font-size: 20px;
 }
-
+.data_user button {
+    font-size: 18px;
+    height: 50px;
+    width: 150px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .data_user button:hover {
+    background-color: #0056b3;
+  }

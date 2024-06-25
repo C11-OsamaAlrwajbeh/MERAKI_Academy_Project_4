@@ -100,7 +100,7 @@ const login = (req, res) => {
   };
 
    const findAll = (req , res)=>{
-    userSchema.find({})
+    userSchema.find({}).populate("role")
     .then((result)=>{
        return res.status(200).json({
         success:true , 

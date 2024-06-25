@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 import { jwtDecode } from "jwt-decode";
 import { GoogleLogin } from '@react-oauth/google';
+import Alert from '@mui/material/Alert'
 
 
 const Login = () => {
@@ -63,6 +64,8 @@ const Login = () => {
         console.log(err) ; 
 
     }
+
+
     return (
 
         <div className="login">
@@ -72,21 +75,24 @@ const Login = () => {
             <label> Email </label>
             <input onChange={changeEmail} placeholder="User Name" />
 
-            <br />
 
             <label> Password </label>
             <input onChange={changePassword} placeholder="password" />
 
             <button onClick={valied}> Login </button>
-            <br/>
+    
 
             <GoogleLogin className="googleLoginButton" 
                 onSuccess={credentialResponse }
                 onError={errorMassege}
+                size ="large"
+                type="standard"
+                width="200px"
+                theme="filled_blue"
              />
 
 
-                {created ? navigate("/home") : <div > {message} </div>}
+                {created ?  navigate("/home") :<Alert variant="outlined" severity={created ? "success" : "error"}>{message}</Alert>}
             <br />
 
 
