@@ -2,8 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import "./details.css";
 import axios from "axios";
 import { Context } from "../../App";
+import { useLocation } from "react-router-dom";
 
-const Details = ({ data }) => {
+const Details = () => {
+    const location = useLocation();
+    const bookDetails = location.state ;
     const { token, enter , role , userId } = useContext(Context);
     const [comment, setComment] = useState("");
     const [book, setBook] = useState("");
@@ -13,7 +16,7 @@ const Details = ({ data }) => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/book/findById/${data}`)
+        axios.get(`http://localhost:5000/book/findById/${bookDetails}`)
             .then((result) => {
                 setBook(result.data.message);
                 setComments(result.data.message.comments);
@@ -31,9 +34,9 @@ const Details = ({ data }) => {
     }
 
     const handelClickedAddComment = () => {
-        axios.post(`http://localhost:5000/comment/create/${data}`, { comment }, { headers })
+        axios.post(`http://localhost:5000/comment/create/${bookDetails}`, { comment }, { headers })
             .then((result) => {
-                axios.get(`http://localhost:5000/book/findById/${data}`)
+                axios.get(`http://localhost:5000/book/findById/${bookDetails}`)
                     .then((result) => {
                         setBook(result.data.message);
                         setComments(result.data.message.comments);
@@ -48,7 +51,7 @@ const Details = ({ data }) => {
 
     const deleted = (ele) => {
         console.log(ele._id)
-        axios.delete(`http://localhost:5000/comment/delete/${data}/${ele._id}`, { headers })
+        axios.delete(`http://localhost:5000/comment/delete/${bookDetails}/${ele._id}`, { headers })
             .then((result) => {
                 setComments(comments.filter(comment => comment._id !== ele._id))
             }).catch((err) => {
@@ -59,15 +62,19 @@ const Details = ({ data }) => {
 
     return (
         <div className="page">
+
+
             <div className="details">
                 <img src={book.imge} alt="Book cover" />
                 <div className="bookInformation">
                     <h2> <span> Title: </span> {book.title}</h2>
                     <h2> <span> Author: </span>{book.author}</h2>
-                    <h3> <span>Description:</span> {book.description}</h3>
+                    <h3> <span>Description: </span> {book.description}</h3>
                     <h3> <span>Pages: </span>{book.pages}</h3>
-                    <h3> <span>Language:</span>{book.language}</h3>
-                    <h3><span> Genre :</span>{book.genre}</h3>
+                    <h3> <span>Language: </span>{book.language}</h3>
+                    <h3><span> Genre: </span>{book.genre}</h3>
+                    <h3><span> Price: </span>{book.price}  jd</h3>
+
                 </div>
             </div>
             <div className="box_comments">
@@ -94,7 +101,8 @@ const Details = ({ data }) => {
                             : ""}
                     </div>
                 })}
-            </div>
+            </div>   
+
         </div>
     );
 }

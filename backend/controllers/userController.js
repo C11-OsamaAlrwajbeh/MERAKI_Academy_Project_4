@@ -42,7 +42,7 @@ const login = (req, res) => {
   if (!req.body.password || !req.body.email){
     return res.status(403).json({
       success: false,
-      message: `Must Be Enter Password and Email `,
+      message: `You must enter your password and email `,
     })
     }
     const password = req.body.password;

@@ -23,7 +23,7 @@
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ddd;
-    font-size: 15px;
+    font-size: 18px;
     outline: none;
   }
   .login label {
@@ -40,6 +40,7 @@
     font-size: 16px;
     color: #fff;
     background-color: #007bff;
+    font-size: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -56,20 +57,6 @@
     
   }
   
-  .googleLoginButton {
-    color: blue;
-    border: none;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .googleLoginButton:hover {
-    background-color: #f0f8ff;
-    transform: translateY(-2px);
-  }
   
   @media (max-width: 600px) {
     .login {

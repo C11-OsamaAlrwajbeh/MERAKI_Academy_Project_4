@@ -15,6 +15,8 @@ import Category from "./components/role 1 interface/Category" ;
 import Update from "./components/role 1 interface/update" 
 
 
+
+
 export const Context = createContext();
 const App = () => {
   
@@ -40,9 +42,10 @@ const App = () => {
       <Route path='/details' element={<Details/>}/>
       <Route path='/favierot' element={<Favierot/>}/>
       <Route path='/cart' element={<Cart/>}/>
+      <Route path='/details' element={<Details/>}/>
       </Routes>
     </Context.Provider>
-      
+    
       
     </div>
   )

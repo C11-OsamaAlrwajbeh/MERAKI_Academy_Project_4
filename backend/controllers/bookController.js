@@ -1,7 +1,7 @@
 const bookSchema = require("../models/bookSchema") ; 
 
 const create =( req , res )=>{
-const {title , description, imge , author , language , genre , pages , price , comments } = req.body
+const {title , description, author , language , genre , pages , price  , imge, comments } = req.body
 const dbBook = new bookSchema({
     title , description, imge , author , language , genre , pages ,price
 })    
@@ -15,8 +15,8 @@ dbBook.save()
     }).catch((err)=>{
     res.status(500).json({
         success: false,
-        message: `Server Error`,
-        err: err.message,
+        message: `create failed`,
+        err: err,
       });
 })
 }

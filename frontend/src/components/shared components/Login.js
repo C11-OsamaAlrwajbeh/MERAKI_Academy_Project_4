@@ -77,7 +77,7 @@ const Login = () => {
 
 
             <label> Password </label>
-            <input onChange={changePassword} placeholder="password" />
+            <input type="password" onChange={changePassword} placeholder="password" />
 
             <button onClick={valied}> Login </button>
     
@@ -89,10 +89,11 @@ const Login = () => {
                 type="standard"
                 width="200px"
                 theme="filled_blue"
+                
              />
 
 
-                {created ?  navigate("/home") :<Alert variant="outlined" severity={created ? "success" : "error"}>{message}</Alert>}
+                {created ?  navigate("/home") :<div className="message_register">{message}</div>}
             <br />
 
 

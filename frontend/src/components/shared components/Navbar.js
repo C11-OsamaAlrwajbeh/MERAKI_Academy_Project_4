@@ -89,7 +89,7 @@ const Navbar = () => {
                         <Link className="link" to={"/favierot"}> favorite</Link>
                         <Link className="link" to={"/cart"}> Cart </Link>
                         <Link className="link" onClick={()=>{setShowLogout(true);setOpen(true);}}> logout </Link>
-                        <Link className="link" to={"/register"}> About Us</Link>
+                        <a href='#about'> About </a>
                     </div>
 
                 :

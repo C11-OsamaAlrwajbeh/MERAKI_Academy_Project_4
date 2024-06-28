@@ -87,7 +87,7 @@ return(
 
 
 <label> Password </label>
-<input onChange={changePassword} placeholder="password"/>
+<input type="password" onChange={changePassword} placeholder="password"/>
 
 <button onClick={send}> Login </button>
 
@@ -103,7 +103,7 @@ theme="filled_blue"
 />
 
 
-{created? <div className="message">{created}</div> : <div className="message"> {created} </div> }
+{created? <div className="message_register">{created}</div> : <div className="message_register"> {created} </div> }
 <br/>
   
 </div>

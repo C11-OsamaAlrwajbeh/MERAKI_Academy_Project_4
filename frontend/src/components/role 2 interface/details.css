@@ -101,13 +101,32 @@
     border: none ;
    }
 
-   .box_comments button{
-    padding: 9px;
-    width: 20%;
+
+   .backButton{
+    display: flex ;
+    flex-direction: row;
+    width: inherit;
+    padding: 10px;
+
    }
 
-   .box_comments button:hover{
-    background-color: aliceblue;
+    button{
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+   }
+
+   
+ button:hover{
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
   @media (max-width: 600px) {
 .details{

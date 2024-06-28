@@ -1,5 +1,5 @@
 .add {
-    max-width: 600px;
+    width: 80% ;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -22,10 +22,10 @@
 
 .add_form input,
 .add_form textarea {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .add_form input:focus,
@@ -55,3 +55,13 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.message {
+    font-size: 25px;
+    font-family: Arial, sans-serif; 
+    color: #333; 
+    background-color: #f9f9f9; 
+    padding: 15px; 
+    border-radius: 5px; 
+    margin: 10px 0; 
+  }

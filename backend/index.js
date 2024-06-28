@@ -9,12 +9,13 @@ const commentRouter = require('./routes/commentRouter');
 const cartRouter = require('./routes/cartRouter');
 const categoryRouter = require("./routes/categoryRouter") ; 
 const favoriteRouter = require("./routes/favoriteRouter") ; 
-
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname , "images")))
 
 // Handles any other endpoints [unassigned - endpoints]
 app.use("/favorite" , favoriteRouter)

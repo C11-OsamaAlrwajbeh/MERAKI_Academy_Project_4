@@ -1,81 +1,79 @@
-.home {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
-}
-
-.data {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  overflow: hidden;
+.container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  gap: 20px;
 }
 
-.data:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.data img {
+.container .slideshow {
   width: 100%;
-  height: 60%;
-  object-fit: cover;
-  display: block;
+  max-width: 1200px;
+  margin-bottom: 30px;
 }
 
-.data h1 {
+.home {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 90%;
+}
+
+.data_home {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  background-color: #dcd9d5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.data_home:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.data_home img {
+  height: 400px;
+  width: 95% ;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.data_home h1 {
   font-size: 1.2em;
-  margin: 10px 10px 0;
   color: #333;
-  text-align: center;
-}
-
-.data h3 {
-  font-size: 1em;
-  margin: 10px;
-  color: #555;
-  text-align: center;
-}
-
-.price {
-  margin: 10px;
+  margin: 15px 0;
   font-weight: bold;
-  text-align: center;
-  color: #333;
+}
+
+.data_home .price {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .icons {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 15px;
 }
 
-.heart:hover,
-.carts:hover,
-.trash:hover {
-  color: red;
+.icons svg {
   cursor: pointer;
+  transition: fill 0.3s;
 }
 
-@media (max-width: 600px) {
-  .home {
-      grid-template-columns: repeat(1, minmax(200px, 1fr));
-  }
-
-  .data h1 {
-      font-size: 1em;
-  }
-
-  .data h3 {
-      font-size: 0.9em;
-  }
+.icons .heart:hover {
+  fill: #e74c3c;
 }
+
+.icons .carts:hover {
+  fill: #27ae60;
+}
+
+.icons .trash:hover {
+  fill: #c0392b;}
