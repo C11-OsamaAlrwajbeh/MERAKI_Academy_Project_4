@@ -20,7 +20,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(true);
     const [showLogout  ,setShowLogout]=useState(false) ; 
-    const { enter, role, setNameCategory, setToken, setEnter, setSearch } = useContext(Context);
+    const { enter, role, setNameCategory, setToken, setEnter, setSearch ,createCategory } = useContext(Context);
     const [navbarCategory, setNavbarCategory] = useState([])
     const handelSelector = (e) => {
         setNameCategory(e.target.value);
@@ -34,7 +34,7 @@ const Navbar = () => {
             }).catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, [createCategory])
     
     const logout = () => {
         setEnter(false);
@@ -79,7 +79,7 @@ const Navbar = () => {
                         <Link className="link" to={"/user"}> Users</Link>
                         <Link className="link" to={"/home"}> Books </Link>
                         <Link className="link" to={"/category"}> Category </Link>
-                        <Link className="link" to={"/update"}> update </Link>
+
                         <Link className="link" onClick={()=>{setShowLogout(true);setOpen(true);}}>logout </Link>
                     </div>
                     :
@@ -109,7 +109,7 @@ const Navbar = () => {
                onClose={handleClose}
                aria-describedby="alert-dialog-slide-description"
              >
-               <DialogTitle>{"You Want exit from page"}</DialogTitle>
+               <DialogTitle>{"Do you want to log out of your account?"}</DialogTitle>
                <DialogContent>
                <DialogContentText id="alert-dialog-slide-description">
                   

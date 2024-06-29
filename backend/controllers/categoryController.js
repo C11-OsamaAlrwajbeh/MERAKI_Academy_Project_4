@@ -1,19 +1,12 @@
 const categoriesSchema = require("../models/categorySchema");
-const userSchema = require("../models/userSchema");
 
 
 const create = (req , res)=>{
 const {name} = req.body ; 
 const category = [] ; 
 
-if(name === ""){
- return res.status(500).json({
-   success:false , 
-   message :"Enter type Category"
-        })
-}
 
-console.log(name) ; 
+
 
 const dbCategory = new categoriesSchema({name , category}) 
 

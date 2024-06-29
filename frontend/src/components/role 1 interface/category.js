@@ -4,9 +4,10 @@ import "./category.css";
 import { Context } from "../../App";
 
 const Category = () => {
+    const {createCategory , setCreateCategory} = useContext(Context)
     const [dataCategory, setDataCategory] = useState([]); // 
     const [id , setId] = useState(0) ; 
-    const [createCategory , setCreateCategory]=useState("") ; 
+    const [message , setMessage]=useState("") ; 
     const[category , setCategory] = useState([]) ; 
     
 
@@ -33,7 +34,7 @@ const Category = () => {
     const dd = (e)=>{ 
         axios.post(`http://localhost:5000/category/add/${id}/${e.target.value}`)
         .then((result) => {
-            console.log(result) ; 
+            console.log(result.data.message) ; 
         })
         .catch((err) => {
             console.log(err);
@@ -46,23 +47,26 @@ const Category = () => {
     }
 
     const handelClikcCreate=()=>{
+        console.log(createCategory)
         axios.post("http://localhost:5000/category/create",{name:createCategory}) 
         .then((result) => {
+            setMessage(result.data.message) ; 
             setCreateCategory([...category, { name: createCategory }]);
-            setCreateCategory(""); 
+        
         })
         .catch((err) => {
-            console.log(err);
+            setMessage(err.response.data.message);
         });
     }
 
-        console.log(category)
+
     return (
         <div className="category">
             <div className="create_class_category">
              <label>Create New Category</label>
              <input placeholder="Enter Category" onChange={inputCategory}/> 
              <button onClick={handelClikcCreate}>Create</button>
+             {message ? <div className="message_Category">{message}</div> : <div className="message_Category">{message}</div>}
             </div>
         <div className="category_form">
           

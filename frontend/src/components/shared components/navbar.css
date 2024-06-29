@@ -73,6 +73,17 @@
   }
 }
 
+a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+ 
+}
+
+a:hover {
+  color: #ff6347;
+}
 
 
 

@@ -43,7 +43,6 @@ const Add = () => {
     useEffect(() => {
         if (imge) {
             const data_book = { title, description, imge, author, language, genre, pages, price };
-
             axios.post("http://localhost:5000/book/create", data_book)
                 .then(result => {
                     setMessage(result.data.message);

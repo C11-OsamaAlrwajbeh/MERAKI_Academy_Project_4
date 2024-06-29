@@ -19,7 +19,7 @@ import Update from "./components/role 1 interface/update"
 
 export const Context = createContext();
 const App = () => {
-  
+  const [createCategory , setCreateCategory]=useState("") ; 
   const [enter , setEnter]=useState(false) ; 
   const [token , setToken] = useState(" "|| localStorage.getItem("token")) ; 
   const [role , setRole] = useState("") ; 
@@ -29,7 +29,7 @@ const App = () => {
   return (
    <div className="App">
     <Context.Provider value={{token , setToken , enter , setEnter ,
-       role , setRole ,  nameCategory , setNameCategory  ,userId , setUserId ,search, setSearch}}>
+       role , setRole ,  nameCategory , setNameCategory  ,userId , setUserId ,search, setSearch , createCategory , setCreateCategory}}>
       <Navbar/>
       <Routes>
       <Route path='/update' element={<Update/>}/>

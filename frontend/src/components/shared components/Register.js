@@ -43,12 +43,14 @@ const changeLastName =(e)=>{
   }
 
   const credentialResponse=(res)=>{
-    const s = jwtDecode(res.credential) ; 
-     setName(s.given_name) ; 
-     setLastName(s.family_name) ; 
-     setEmail(s.email) ; 
-     setPassword(s.name);  
-     send() ; 
+    const s = jwtDecode(res.credential) ;  
+     axios.post("http://localhost:5000/user/register" , {name:s.given_name , lastName:s.family_name , age:22 ,  email:s.email ,  password:s.name} )
+    .then((result)=>{  
+     setCreated(result.data.message) 
+   }).catch((err)=>{
+    console.log(err)
+    setCreated(err.response.data.message)
+})
      
     
     
