@@ -26,7 +26,7 @@ return(
     <div className="information">
     <div className="data_about">
         <ul>
-        <h3> CURE APP</h3>
+        <h3>Book Store</h3>
         <p>Bookstores offer a rich array of services<br/>
              designed to enhance the shopping experience, 
              foster community, and promote literacy.</p>
